@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import './WhatsAppPage.css'
 
-const PHONE = '5519988757448'
+const PHONE = '5531973319417'
 
 const WhatsAppIcon = () => (
   <svg viewBox="0 0 24 24" fill="white" width="24" height="24" aria-hidden="true">
