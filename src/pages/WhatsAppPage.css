@@ -9,7 +9,7 @@
 .bg {
   position: fixed;
   inset: 0;
-  background: url('https://i.postimg.cc/Y0pRryV2/unnamed-(6).jpg') center/cover no-repeat;
+  background: url('/bg-pan.webp') center/cover no-repeat;
   z-index: 0;
 }
 
