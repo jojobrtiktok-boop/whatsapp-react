@@ -2,13 +2,8 @@
   min-height: 100vh;
   min-height: 100dvh;
   position: relative;
-  overflow: hidden;
   font-family: 'Segoe UI', system-ui, sans-serif;
   cursor: pointer;
-}
-
-.footer {
-  cursor: default;
 }
 
 .bg {
@@ -22,18 +17,67 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.55);
 }
 
-.container {
-  position: fixed;
-  inset: 0;
+/* ---------- Hero ---------- */
+
+.hero {
+  position: relative;
   z-index: 2;
+  min-height: 88vh;
+  min-height: 88dvh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  text-align: center;
+  padding: 40px 22px 30px;
+  color: #fff;
 }
+
+.hero-tag {
+  display: inline-block;
+  background: rgba(37, 211, 102, 0.18);
+  border: 1px solid rgba(37, 211, 102, 0.55);
+  color: #7dffae;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  padding: 7px 16px;
+  border-radius: 40px;
+  margin-bottom: 18px;
+}
+
+.hero-title {
+  font-size: clamp(1.7rem, 5.5vw, 2.7rem);
+  line-height: 1.2;
+  max-width: 720px;
+  margin-bottom: 14px;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+}
+
+.highlight {
+  color: #35e876;
+}
+
+.hero-sub {
+  max-width: 620px;
+  font-size: clamp(0.98rem, 2.5vw, 1.15rem);
+  line-height: 1.55;
+  opacity: 0.94;
+  margin-bottom: 28px;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+}
+
+.hero-note {
+  margin-top: 14px;
+  font-size: 0.88rem;
+  opacity: 0.85;
+}
+
+/* ---------- Botão ---------- */
 
 @keyframes pulse {
   0%   { transform: scale(1); }
@@ -62,15 +106,77 @@
 .whatsapp-btn:hover  { transform: scale(1.05); }
 .whatsapp-btn:active { transform: scale(0.96); }
 
+.whatsapp-btn-bottom {
+  display: flex;
+  max-width: 360px;
+  margin: 8px auto 0;
+}
+
+/* ---------- Informações ---------- */
+
+.info {
+  position: relative;
+  z-index: 2;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 10px 20px 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 16px;
+  padding: 24px 22px;
+  color: #2b2b2b;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.card h2 {
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+  color: #157a3e;
+}
+
+.card p {
+  line-height: 1.6;
+  font-size: 0.97rem;
+}
+
+.benefits {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.benefits li {
+  line-height: 1.5;
+  font-size: 0.97rem;
+}
+
+.steps {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.steps li {
+  line-height: 1.5;
+  font-size: 0.97rem;
+}
+
+/* ---------- Rodapé ---------- */
+
 .footer {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 3;
-  padding: 14px 16px;
+  position: relative;
+  z-index: 2;
+  padding: 16px;
   text-align: center;
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0, 0, 0, 0.6);
+  cursor: default;
 }
 
 .footer-links {
