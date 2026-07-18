@@ -23,7 +23,7 @@ export default function WhatsAppPage({ message }) {
       <div className="bg" />
 
       <section className="hero">
-        <p className="hero-tag">Recíbelo GRATIS en tu WhatsApp ahora</p>
+        <p className="hero-tag">Recíbelo en tu WhatsApp ahora</p>
         <h1 className="hero-title">
           +150 Recetas de Pan <span className="highlight">Sin Gluten</span> y{' '}
           <span className="highlight">Sin Lactosa</span>
