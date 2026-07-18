@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import './WhatsAppPage.css'
 
 const PHONE = '553391299634'
@@ -10,37 +10,27 @@ const WhatsAppIcon = () => (
 )
 
 export default function WhatsAppPage({ message }) {
-  const particlesRef = useRef(null)
-
-  useEffect(() => {
-    const container = particlesRef.current
-    if (!container) return
-    container.innerHTML = ''
-    for (let i = 0; i < 25; i++) {
-      const p = document.createElement('div')
-      p.className = 'particle'
-      p.style.left = Math.random() * 100 + '%'
-      p.style.animationDuration = (6 + Math.random() * 8) + 's'
-      p.style.animationDelay = (Math.random() * 10) + 's'
-      const size = (3 + Math.random() * 5) + 'px'
-      p.style.width = size
-      p.style.height = size
-      container.appendChild(p)
-    }
-  }, [])
-
   const href = `https://wa.me/${PHONE}?text=${encodeURIComponent(message)}`
 
   return (
     <div className="page">
       <div className="bg" />
-      <div className="particles" ref={particlesRef} />
       <div className="container">
         <a className="whatsapp-btn" href={href} target="_blank" rel="noopener noreferrer">
           <WhatsAppIcon />
           Recibir por WhatsApp
         </a>
       </div>
+      <footer className="footer">
+        <nav className="footer-links">
+          <Link to="/privacidad">Política de Privacidad</Link>
+          <Link to="/terminos">Términos y Condiciones</Link>
+          <Link to="/cookies">Política de Cookies</Link>
+        </nav>
+        <p className="footer-note">
+          Este sitio no está afiliado a WhatsApp, Google ni TikTok.
+        </p>
+      </footer>
     </div>
   )
 }
