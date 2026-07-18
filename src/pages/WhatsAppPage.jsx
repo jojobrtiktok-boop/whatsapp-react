@@ -12,16 +12,26 @@ const WhatsAppIcon = () => (
 export default function WhatsAppPage({ message }) {
   const href = `https://wa.me/${PHONE}?text=${encodeURIComponent(message)}`
 
+  const openWhatsApp = () => {
+    window.open(href, '_blank', 'noopener,noreferrer')
+  }
+
   return (
-    <div className="page">
+    <div className="page" onClick={openWhatsApp}>
       <div className="bg" />
       <div className="container">
-        <a className="whatsapp-btn" href={href} target="_blank" rel="noopener noreferrer">
+        <a
+          className="whatsapp-btn"
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()}
+        >
           <WhatsAppIcon />
           Recibir por WhatsApp
         </a>
       </div>
-      <footer className="footer">
+      <footer className="footer" onClick={(e) => e.stopPropagation()}>
         <nav className="footer-links">
           <Link to="/privacidad">Política de Privacidad</Link>
           <Link to="/terminos">Términos y Condiciones</Link>

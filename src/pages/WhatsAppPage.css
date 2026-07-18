@@ -4,6 +4,11 @@
   position: relative;
   overflow: hidden;
   font-family: 'Segoe UI', system-ui, sans-serif;
+  cursor: pointer;
+}
+
+.footer {
+  cursor: default;
 }
 
 .bg {
@@ -30,6 +35,12 @@
   padding: 20px;
 }
 
+@keyframes pulse {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
 .whatsapp-btn {
   display: inline-flex;
   align-items: center;
@@ -44,6 +55,7 @@
   font-weight: 700;
   letter-spacing: 0.3px;
   box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
+  animation: pulse 1.5s ease-in-out infinite;
   transition: transform 0.1s;
 }
 
