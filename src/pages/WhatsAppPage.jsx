@@ -38,7 +38,7 @@ export default function WhatsAppPage({ message }) {
       <div className="container">
         <a className="whatsapp-btn" href={href} target="_blank" rel="noopener noreferrer">
           <WhatsAppIcon />
-          Receba por WhatsApp
+          Recibir por WhatsApp
         </a>
       </div>
     </div>
