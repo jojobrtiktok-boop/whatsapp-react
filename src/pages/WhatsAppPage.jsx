@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom'
 import './WhatsAppPage.css'
 
-const PHONE = '553391299634'
+const PHONE = '5533912999634'
+const API_CLIQUE = 'https://apioficialdojojo.vercel.app/api/lps?action=clique-externo'
+const EMOJIS = ['☺️', '😃', '😊', '🌹', '🥰', '🙂']
 
 const WhatsAppIcon = ({ size = 24 }) => (
   <svg viewBox="0 0 24 24" fill="white" width={size} height={size} aria-hidden="true">
@@ -10,13 +12,39 @@ const WhatsAppIcon = ({ size = 24 }) => (
 )
 
 export default function WhatsAppPage({ message }) {
-  const href = `https://wa.me/${PHONE}?text=${encodeURIComponent(message)}`
-
   const openWhatsApp = () => {
-    window.open(href, '_blank', 'noopener,noreferrer')
+    const emoji = EMOJIS[Math.floor(Math.random() * EMOJIS.length)]
+    const text = `${emoji} ${message}`
+    // api.whatsapp.com direto: o redirect do wa.me corrompe emojis (viram %EF%BF%BD)
+    const url = `https://api.whatsapp.com/send?phone=${PHONE}&text=${encodeURIComponent(text)}`
+    const params = new URLSearchParams(window.location.search)
+
+    try {
+      navigator.sendBeacon(
+        API_CLIQUE,
+        new Blob(
+          [JSON.stringify({
+            emoji,
+            numero_whatsapp: PHONE,
+            gclid: params.get('gclid'),
+            fbclid: params.get('fbclid'),
+            url_completa: window.location.href,
+          })],
+          { type: 'text/plain' }
+        )
+      )
+    } catch { /* beacon falhou — segue para o WhatsApp mesmo assim */ }
+
+    window.location.href = url
   }
 
   const stop = (e) => e.stopPropagation()
+
+  const clickBtn = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    openWhatsApp()
+  }
 
   return (
     <div className="page" onClick={openWhatsApp}>
@@ -32,13 +60,7 @@ export default function WhatsAppPage({ message }) {
           Panes suaves, esponjosos y deliciosos que puedes preparar en casa con
           ingredientes fáciles de encontrar — sin harina de trigo y sin leche.
         </p>
-        <a
-          className="whatsapp-btn"
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={stop}
-        >
+        <a className="whatsapp-btn" href="#" onClick={clickBtn}>
           <WhatsAppIcon />
           Recibir por WhatsApp
         </a>
@@ -76,13 +98,7 @@ export default function WhatsAppPage({ message }) {
           </ol>
         </div>
 
-        <a
-          className="whatsapp-btn whatsapp-btn-bottom"
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={stop}
-        >
+        <a className="whatsapp-btn whatsapp-btn-bottom" href="#" onClick={clickBtn}>
           <WhatsAppIcon />
           Quiero mis recetas ahora
         </a>
