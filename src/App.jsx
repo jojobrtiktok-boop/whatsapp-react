@@ -10,8 +10,8 @@ export default function App() {
       {['cv1', 'cv2', 'cv3', 'cv4', 'cv5', 'cv6'].map((cv) => (
         <Route key={cv} path={`/${cv}`} element={<WhatsAppPage />} />
       ))}
-      <Route path="/privacidade" element={<PrivacyPage />} />
-      <Route path="/termos" element={<TermsPage />} />
+      <Route path="/privacidad" element={<PrivacyPage />} />
+      <Route path="/terminos" element={<TermsPage />} />
       <Route path="/cookies" element={<CookiesPage />} />
     </Routes>
   )

@@ -4,7 +4,7 @@ import './WhatsAppPage.css'
 const PHONE = '5533991299634'
 const API_CLIQUE = 'https://apioficialdojojo.vercel.app/api/lps?action=clique-externo'
 const EMOJIS = ['☺️', '😃', '😊', '🌹', '🥰', '🙂']
-const MENSAGEM = 'Olá, tenho interesse em receber as Receitas Italianas!'
+const MENSAGEM = '¡Hola! Quiero recibir las recetas de panes sin gluten'
 
 const WhatsAppIcon = () => (
   <svg viewBox="0 0 24 24" fill="white" width="24" height="24" aria-hidden="true">
@@ -51,20 +51,20 @@ export default function WhatsAppPage() {
     <div className="page" onClick={openWhatsApp}>
       <div className="bg" />
       <div className="container">
-        <h1 className="titulo">Receitas Italianas</h1>
+        <h1 className="titulo">Panes Sin Gluten</h1>
         <a className="whatsapp-btn" href="#" onClick={clickBtn}>
           <WhatsAppIcon />
-          Receber pelo WhatsApp
+          Recibir por WhatsApp
         </a>
       </div>
       <footer className="footer" onClick={stop}>
         <nav className="footer-links">
-          <Link to="/privacidade">Política de Privacidade</Link>
-          <Link to="/termos">Termos e Condições</Link>
+          <Link to="/privacidad">Política de Privacidad</Link>
+          <Link to="/terminos">Términos y Condiciones</Link>
           <Link to="/cookies">Política de Cookies</Link>
         </nav>
         <p className="footer-note">
-          Este site não é afiliado ao WhatsApp, Google ou TikTok.
+          Este sitio no está afiliado a WhatsApp, Google ni TikTok.
         </p>
       </footer>
     </div>

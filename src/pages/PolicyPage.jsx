@@ -5,10 +5,10 @@ function PolicyLayout({ title, children }) {
   return (
     <div className="policy-page">
       <div className="policy-container">
-        <Link to="/" className="policy-back">&larr; Voltar</Link>
+        <Link to="/" className="policy-back">&larr; Volver</Link>
         <h1>{title}</h1>
         {children}
-        <p className="policy-updated">Última atualização: julho de 2026</p>
+        <p className="policy-updated">Última actualización: agosto de 2026</p>
       </div>
     </div>
   )
@@ -16,37 +16,37 @@ function PolicyLayout({ title, children }) {
 
 export function PrivacyPage() {
   return (
-    <PolicyLayout title="Política de Privacidade">
+    <PolicyLayout title="Política de Privacidad">
       <p>
-        Neste site respeitamos a sua privacidade. Esta política descreve quais informações
-        coletamos, como as utilizamos e quais são os seus direitos.
+        En este sitio respetamos tu privacidad. Esta política describe qué información
+        recopilamos, cómo la usamos y cuáles son tus derechos.
       </p>
-      <h2>Informações que coletamos</h2>
+      <h2>Información que recopilamos</h2>
       <p>
-        Este site não solicita nem armazena dados pessoais em formulários. Ao clicar no botão do
-        WhatsApp, você será redirecionado para o aplicativo WhatsApp, onde decide quais informações
-        deseja compartilhar. O número de telefone e as mensagens que você enviar seguem a{' '}
-        <a href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">política de privacidade do WhatsApp</a>.
+        Este sitio no solicita ni almacena datos personales en formularios. Al hacer clic en el
+        botón de WhatsApp, serás redirigido a la aplicación WhatsApp, donde tú decides qué
+        información compartir. El número de teléfono y los mensajes que envíes se rigen por la{' '}
+        <a href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">política de privacidad de WhatsApp</a>.
       </p>
-      <h2>Cookies e tecnologias de medição</h2>
+      <h2>Cookies y tecnologías de medición</h2>
       <p>
-        Utilizamos ferramentas de análise e publicidade de terceiros, como Google Ads (gtag.js) e
-        TikTok Pixel, que podem usar cookies e identificadores para medir o desempenho de nossas
-        campanhas publicitárias e exibir anúncios relevantes. Consulte nossa{' '}
-        <Link to="/cookies">Política de Cookies</Link> para mais detalhes.
+        Utilizamos herramientas de análisis y publicidad de terceros, como Google Ads (gtag.js) y
+        TikTok Pixel, que pueden usar cookies e identificadores para medir el rendimiento de
+        nuestras campañas publicitarias y mostrar anuncios relevantes. Consulta nuestra{' '}
+        <Link to="/cookies">Política de Cookies</Link> para más detalles.
       </p>
-      <h2>Uso das informações</h2>
+      <h2>Uso de la información</h2>
       <p>
-        Os dados de medição são usados apenas de forma agregada para entender o desempenho da
-        página e dos anúncios. Não vendemos nem compartilhamos suas informações pessoais com
-        terceiros para fins diferentes dos descritos.
+        Los datos de medición se usan únicamente de forma agregada para entender el rendimiento de
+        la página y de los anuncios. No vendemos ni compartimos tu información personal con
+        terceros para fines distintos a los descritos.
       </p>
-      <h2>Seus direitos</h2>
+      <h2>Tus derechos</h2>
       <p>
-        Você pode desativar a publicidade personalizada do Google em{' '}
+        Puedes desactivar la publicidad personalizada de Google en{' '}
         <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer">adssettings.google.com</a>{' '}
-        e gerenciar os cookies pelas configurações do seu navegador. Para exercer seus direitos de
-        acesso, correção ou exclusão de dados, entre em contato pelo WhatsApp.
+        y gestionar las cookies desde la configuración de tu navegador. Si deseas ejercer tus
+        derechos de acceso, rectificación o eliminación de datos, contáctanos por WhatsApp.
       </p>
     </PolicyLayout>
   )
@@ -54,35 +54,35 @@ export function PrivacyPage() {
 
 export function TermsPage() {
   return (
-    <PolicyLayout title="Termos e Condições">
+    <PolicyLayout title="Términos y Condiciones">
       <p>
-        Ao usar este site você aceita os seguintes termos e condições. Se não concordar, por favor
-        não utilize esta página.
+        Al usar este sitio aceptas los siguientes términos y condiciones. Si no estás de acuerdo,
+        por favor no utilices esta página.
       </p>
-      <h2>Descrição do serviço</h2>
+      <h2>Descripción del servicio</h2>
       <p>
-        Este site oferece conteúdo informativo e educativo sobre receitas italianas, entregue por
-        meio do WhatsApp. O acesso ao conteúdo é gratuito, salvo indicação em contrário na
-        comunicação correspondente.
+        Este sitio ofrece contenido informativo y educativo sobre recetas de panes sin gluten,
+        entregado a través de WhatsApp. El acceso al contenido es gratuito, salvo que se indique lo
+        contrario en la comunicación correspondiente.
       </p>
       <h2>Uso permitido</h2>
       <p>
-        Você se compromete a usar este site apenas para fins lícitos. É proibido reproduzir,
-        distribuir ou modificar o conteúdo sem autorização prévia.
+        Te comprometes a usar este sitio únicamente con fines lícitos. Está prohibido reproducir,
+        distribuir o modificar el contenido sin autorización previa.
       </p>
-      <h2>Isenção de responsabilidade</h2>
+      <h2>Descargo de responsabilidad</h2>
       <p>
-        O conteúdo compartilhado tem fins informativos. Os resultados das receitas podem variar
-        conforme os ingredientes, utensílios e condições de preparo de cada pessoa. Este site não
-        é afiliado ao WhatsApp, Google ou TikTok.
+        El contenido compartido tiene fines informativos. Los resultados de las recetas pueden
+        variar según los ingredientes, utensilios y condiciones de preparación de cada persona.
+        Este sitio no está afiliado a WhatsApp, Google ni TikTok.
       </p>
-      <h2>Alterações</h2>
+      <h2>Modificaciones</h2>
       <p>
-        Podemos atualizar estes termos a qualquer momento. A versão vigente será sempre a publicada
-        nesta página.
+        Podemos actualizar estos términos en cualquier momento. La versión vigente será siempre la
+        publicada en esta página.
       </p>
-      <h2>Contato</h2>
-      <p>Para qualquer dúvida sobre estes termos, entre em contato pelo botão do WhatsApp na página inicial.</p>
+      <h2>Contacto</h2>
+      <p>Para cualquier duda sobre estos términos, contáctanos a través del botón de WhatsApp de la página principal.</p>
     </PolicyLayout>
   )
 }
@@ -91,31 +91,32 @@ export function CookiesPage() {
   return (
     <PolicyLayout title="Política de Cookies">
       <p>
-        Este site utiliza cookies e tecnologias semelhantes de terceiros para medir o tráfego e o
-        desempenho de nossas campanhas publicitárias.
+        Este sitio utiliza cookies y tecnologías similares de terceros para medir el tráfico y el
+        rendimiento de nuestras campañas publicitarias.
       </p>
-      <h2>O que são cookies?</h2>
+      <h2>¿Qué son las cookies?</h2>
       <p>
-        Cookies são pequenos arquivos armazenados no seu dispositivo quando você visita um site.
-        Eles permitem reconhecer o seu navegador e lembrar de certas informações.
+        Las cookies son pequeños archivos que se almacenan en tu dispositivo cuando visitas un
+        sitio web. Permiten reconocer tu navegador y recordar cierta información.
       </p>
       <h2>Cookies que utilizamos</h2>
       <ul>
         <li>
-          <strong>Google Ads (gtag.js):</strong> mede conversões e o desempenho de anúncios do
-          Google. Mais informações na{' '}
-          <a href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener noreferrer">política de cookies do Google</a>.
+          <strong>Google Ads (gtag.js):</strong> mide conversiones y el rendimiento de anuncios de
+          Google. Más información en la{' '}
+          <a href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener noreferrer">política de cookies de Google</a>.
         </li>
         <li>
-          <strong>TikTok Pixel:</strong> mede conversões de anúncios do TikTok. Mais informações na{' '}
-          <a href="https://www.tiktok.com/legal/page/global/cookie-policy/pt" target="_blank" rel="noopener noreferrer">política de cookies do TikTok</a>.
+          <strong>TikTok Pixel:</strong> mide conversiones de anuncios de TikTok. Más información
+          en la{' '}
+          <a href="https://www.tiktok.com/legal/page/global/cookie-policy/es" target="_blank" rel="noopener noreferrer">política de cookies de TikTok</a>.
         </li>
       </ul>
-      <h2>Como gerenciar os cookies</h2>
+      <h2>Cómo gestionar las cookies</h2>
       <p>
-        Você pode bloquear ou excluir os cookies pelas configurações do seu navegador. Isso não
-        afeta o funcionamento desta página, já que os cookies são usados apenas para fins de
-        medição.
+        Puedes bloquear o eliminar las cookies desde la configuración de tu navegador. Ten en
+        cuenta que esto no afecta el funcionamiento de esta página, ya que las cookies se usan solo
+        con fines de medición.
       </p>
     </PolicyLayout>
   )
