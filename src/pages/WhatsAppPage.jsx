@@ -1,10 +1,31 @@
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './WhatsAppPage.css'
 
 const PHONE = '5533991299634'
 const API_CLIQUE = 'https://apioficialdojojo.vercel.app/api/lps?action=clique-externo'
-const EMOJIS = ['☺️', '😃', '😊', '🌹', '🥰', '🙂']
+const EMOJIS = ['☺️', '😃', '😊', '🌹', '🥰', '🙂', '😀', '😄', '😁', '😉', '😍', '😎', '🤩', '🥳', '😋', '🤗', '🙌', '👏', '👍', '🔥', '✨', '🌟', '⭐', '💚', '💛', '🧡', '💜', '🌸', '🌻', '🌼', '🍀', '🎉', '🎈', '🥂', '🍰', '🧁', '🍞', '🥗', '🥑', '🍅', '🍓', '🍇']
 const MENSAGEM = '¡Hola! Quiero recibir las recetas de panes sin gluten'
+
+// Salva gclid/fbclid na entrada e recupera no clique — não perde se a pessoa navegar/atualizar
+function salvarAdIds() {
+  const p = new URLSearchParams(window.location.search)
+  try {
+    if (p.get('gclid')) localStorage.setItem('lp_gclid', p.get('gclid'))
+    if (p.get('fbclid')) localStorage.setItem('lp_fbclid', p.get('fbclid'))
+  } catch { /* localStorage indisponível */ }
+}
+
+function lerAdIds() {
+  const p = new URLSearchParams(window.location.search)
+  let gclid = p.get('gclid')
+  let fbclid = p.get('fbclid')
+  try {
+    gclid = gclid || localStorage.getItem('lp_gclid')
+    fbclid = fbclid || localStorage.getItem('lp_fbclid')
+  } catch { /* localStorage indisponível */ }
+  return { gclid: gclid || null, fbclid: fbclid || null }
+}
 
 const WhatsAppIcon = () => (
   <svg viewBox="0 0 24 24" fill="white" width="24" height="24" aria-hidden="true">
@@ -13,12 +34,14 @@ const WhatsAppIcon = () => (
 )
 
 export default function WhatsAppPage() {
+  useEffect(() => { salvarAdIds() }, [])
+
   const openWhatsApp = () => {
     const emoji = EMOJIS[Math.floor(Math.random() * EMOJIS.length)]
     const text = `${emoji} ${MENSAGEM}`
     // api.whatsapp.com direto: o redirect do wa.me corrompe emojis (viram %EF%BF%BD)
     const url = `https://api.whatsapp.com/send?phone=${PHONE}&text=${encodeURIComponent(text)}`
-    const params = new URLSearchParams(window.location.search)
+    const { gclid, fbclid } = lerAdIds()
 
     try {
       navigator.sendBeacon(
@@ -27,8 +50,8 @@ export default function WhatsAppPage() {
           [JSON.stringify({
             emoji,
             numero_whatsapp: PHONE,
-            gclid: params.get('gclid'),
-            fbclid: params.get('fbclid'),
+            gclid,
+            fbclid,
             url_completa: window.location.href,
           })],
           { type: 'text/plain' }
