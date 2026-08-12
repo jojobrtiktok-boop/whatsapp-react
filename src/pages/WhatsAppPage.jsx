@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './WhatsAppPage.css'
 
-const PHONE = '5533991326991'
+const PHONE = '5533991328509'
 const API_CLIQUE = 'https://apioficialdojojo.vercel.app/api/lps?action=clique-externo'
 const EMOJIS = ['☺️', '😃', '😊', '🌹', '🥰', '🙂', '😀', '😄', '😁', '😉', '😍', '😎', '🤩', '🥳', '😋', '🤗', '🙌', '👏', '👍', '🔥', '✨', '🌟', '⭐', '💚', '💛', '🧡', '💜', '🌸', '🌻', '🌼', '🍀', '🎉', '🎈', '🥂', '🍰', '🧁', '🍞', '🥗', '🥑', '🍅', '🍓', '🍇']
 const MENSAGEM = '¡Hola! Quiero recibir las recetas de panes sin gluten'
