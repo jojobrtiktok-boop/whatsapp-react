@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import './WhatsAppPage.css'
 
 const PHONE = '5533991328509'
-const API_CLIQUE = 'https://apioficialdojojo.vercel.app/api/lps?action=clique-externo'
+const NUMERO_DINAMICO_URL = 'https://r-utm.vercel.app/g/7d2a9462-1a48-4c92-80db-6a775db804a4'
 const EMOJIS = ['☺️', '😃', '😊', '🌹', '🥰', '🙂', '😀', '😄', '😁', '😉', '😍', '😎', '🤩', '🥳', '😋', '🤗', '🙌', '👏', '👍', '🔥', '✨', '🌟', '⭐', '💚', '💛', '🧡', '💜', '🌸', '🌻', '🌼', '🍀', '🎉', '🎈', '🥂', '🍰', '🧁', '🍞', '🥗', '🥑', '🍅', '🍓', '🍇']
 const MENSAGEM = '¡Hola! Quiero recibir las recetas de panes sin gluten'
 
@@ -36,30 +36,23 @@ const WhatsAppIcon = () => (
 export default function WhatsAppPage() {
   useEffect(() => { salvarAdIds() }, [])
 
-  const openWhatsApp = () => {
+  const openWhatsApp = async () => {
     const emoji = EMOJIS[Math.floor(Math.random() * EMOJIS.length)]
-    const text = `${emoji} ${MENSAGEM}`
-    // api.whatsapp.com direto: o redirect do wa.me corrompe emojis (viram %EF%BF%BD)
-    const url = `https://api.whatsapp.com/send?phone=${PHONE}&text=${encodeURIComponent(text)}`
-    const { gclid, fbclid } = lerAdIds()
+    const { gclid } = lerAdIds()
 
     try {
-      navigator.sendBeacon(
-        API_CLIQUE,
-        new Blob(
-          [JSON.stringify({
-            emoji,
-            numero_whatsapp: PHONE,
-            gclid,
-            fbclid,
-            url_completa: window.location.href,
-          })],
-          { type: 'text/plain' }
-        )
-      )
-    } catch { /* beacon falhou — segue para o WhatsApp mesmo assim */ }
+      const qs = gclid ? `?gclid=${encodeURIComponent(gclid)}` : ''
+      const res = await fetch(`${NUMERO_DINAMICO_URL}${qs}`)
+      const data = await res.json()
+      if (!data.phone) throw new Error('sem numero')
 
-    window.location.href = url
+      const text = `${emoji} ${data.message || MENSAGEM}`
+      // api.whatsapp.com direto: o redirect do wa.me corrompe emojis (viram %EF%BF%BD)
+      window.location.href = `https://api.whatsapp.com/send?phone=${data.phone}&text=${encodeURIComponent(text)}`
+    } catch {
+      const text = `${emoji} ${MENSAGEM}`
+      window.location.href = `https://api.whatsapp.com/send?phone=${PHONE}&text=${encodeURIComponent(text)}`
+    }
   }
 
   const stop = (e) => e.stopPropagation()
