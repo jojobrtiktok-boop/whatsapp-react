@@ -36,10 +36,13 @@ const WhatsAppIcon = () => (
 export default function WhatsAppPage() {
   useEffect(() => { salvarAdIds() }, [])
 
+  // link "de verdade" pro href — assim copiar o link do botão (long-press/
+  // botão direito) mostra a URL real, não um "#"
+  const { gclid } = lerAdIds()
+  const linkVisivel = `${NUMERO_DINAMICO_URL}${gclid ? `?gclid=${encodeURIComponent(gclid)}` : ''}`
+
   const openWhatsApp = async () => {
-    const { gclid } = lerAdIds()
-    const qs = gclid ? `?gclid=${encodeURIComponent(gclid)}` : ''
-    const url = `${NUMERO_DINAMICO_URL}${qs}`
+    const url = linkVisivel
 
     try {
       // checa se o worker está no ar antes de navegar (no-cors não deixa ler
@@ -66,7 +69,7 @@ export default function WhatsAppPage() {
       <div className="bg" />
       <div className="container">
         <h1 className="titulo">Panes Sin Gluten</h1>
-        <a className="whatsapp-btn" href="#" onClick={clickBtn}>
+        <a className="whatsapp-btn" href={linkVisivel} onClick={clickBtn}>
           <WhatsAppIcon />
           Recibir por WhatsApp
         </a>
