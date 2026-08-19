@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import './WhatsAppPage.css'
 
 const PHONE = '5533991328509'
-const NUMERO_DINAMICO_URL = 'https://r-utm.soulucasrocha9.workers.dev/7d2a9462-1a48-4c92-80db-6a775db804a4'
+const NUMERO_DINAMICO_URL = 'https://169-58-196-197.sslip.io/gwa/7d2a9462-1a48-4c92-80db-6a775db804a4'
 const EMOJIS = ['☺️', '😃', '😊', '🌹', '🥰', '🙂', '😀', '😄', '😁', '😉', '😍', '😎', '🤩', '🥳', '😋', '🤗', '🙌', '👏', '👍', '🔥', '✨', '🌟', '⭐', '💚', '💛', '🧡', '💜', '🌸', '🌻', '🌼', '🍀', '🎉', '🎈', '🥂', '🍰', '🧁', '🍞', '🥗', '🥑', '🍅', '🍓', '🍇']
 const MENSAGEM = '¡Hola! Quiero recibir las recetas de panes sin gluten'
 
