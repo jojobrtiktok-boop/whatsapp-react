@@ -1,9 +1,12 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './WhatsAppPage.css'
 
 const PHONE = '5533991328509'
-const NUMERO_DINAMICO_URL = 'https://169-58-196-197.sslip.io/gwa/7d2a9462-1a48-4c92-80db-6a775db804a4'
+// Proxy no nosso backend: busca o chip no roteador (sslip.io) por trás, sem
+// CORS, e devolve só {phone, message} — o navegador não consegue ler o
+// Location do roteador diretamente pra montar a mensagem com emoji.
+const CHIP_DINAMICO_URL = 'https://apioficialdojojo.vercel.app/api/chip-dinamico'
 const EMOJIS = ['☺️', '😃', '😊', '🌹', '🥰', '🙂', '😀', '😄', '😁', '😉', '😍', '😎', '🤩', '🥳', '😋', '🤗', '🙌', '👏', '👍', '🔥', '✨', '🌟', '⭐', '💚', '💛', '🧡', '💜', '🌸', '🌻', '🌼', '🍀', '🎉', '🎈', '🥂', '🍰', '🧁', '🍞', '🥗', '🥑', '🍅', '🍓', '🍇']
 const MENSAGEM = '¡Hola! Quiero recibir las recetas de panes sin gluten'
 
@@ -34,26 +37,32 @@ const WhatsAppIcon = () => (
 )
 
 export default function WhatsAppPage() {
-  useEffect(() => { salvarAdIds() }, [])
+  const [chip, setChip] = useState(null) // { phone, message } vindos do chip dinâmico
+
+  useEffect(() => {
+    salvarAdIds()
+    const { gclid } = lerAdIds()
+    const qs = gclid ? `?gclid=${encodeURIComponent(gclid)}` : ''
+    fetch(`${CHIP_DINAMICO_URL}${qs}`)
+      .then((r) => r.json())
+      .then((data) => { if (data.phone) setChip(data) })
+      .catch(() => { /* mantém o fallback fixo */ })
+  }, [])
+
+  const montarLink = () => {
+    const emoji = EMOJIS[Math.floor(Math.random() * EMOJIS.length)]
+    const phone = chip?.phone || PHONE
+    const msg = chip?.message || MENSAGEM
+    const text = `${emoji} ${msg}`
+    return `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(text)}`
+  }
 
   // link "de verdade" pro href — assim copiar o link do botão (long-press/
   // botão direito) mostra a URL real, não um "#"
-  const { gclid } = lerAdIds()
-  const linkVisivel = `${NUMERO_DINAMICO_URL}${gclid ? `?gclid=${encodeURIComponent(gclid)}` : ''}`
+  const linkVisivel = montarLink()
 
-  const openWhatsApp = async () => {
-    const url = linkVisivel
-
-    try {
-      // checa se o worker está no ar antes de navegar (no-cors não deixa ler
-      // o redirect por causa de CORS, só serve pra detectar falha de rede/DNS)
-      await fetch(url, { method: 'HEAD', mode: 'no-cors' })
-      window.location.href = url
-    } catch {
-      const emoji = EMOJIS[Math.floor(Math.random() * EMOJIS.length)]
-      const text = `${emoji} ${MENSAGEM}`
-      window.location.href = `https://api.whatsapp.com/send?phone=${PHONE}&text=${encodeURIComponent(text)}`
-    }
+  const openWhatsApp = () => {
+    window.location.href = montarLink()
   }
 
   const stop = (e) => e.stopPropagation()
