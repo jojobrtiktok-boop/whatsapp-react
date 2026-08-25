@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './WhatsAppPage.css'
 
-const NUMERO_DINAMICO_URL = 'https://169-58-196-197.sslip.io/gwa/7d2a9462-1a48-4c92-80db-6a775db804a4'
+const NUMERO_DINAMICO_URL = 'https://169-58-206-193.sslip.io/gwa/cdc96f90-256a-41c7-9fa5-c968a42b17a0'
 
 // Salva gclid/fbclid na entrada e recupera no clique — não perde se a pessoa navegar/atualizar
 function salvarAdIds() {
