@@ -1,8 +1,14 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './WhatsAppPage.css'
 
-const NUMERO_DINAMICO_URL = 'https://169-58-206-193.sslip.io/gwa/cdc96f90-256a-41c7-9fa5-c968a42b17a0'
+// Dois roteadores — sorteia um por carregamento de página (~50/50 no
+// volume). Alternar por navegador não funciona bem porque quase todo
+// clique vem de visitante novo, sem histórico salvo.
+const ROTEADORES = [
+  'https://169-58-206-193.sslip.io/gwa/cdc96f90-256a-41c7-9fa5-c968a42b17a0',
+  'https://169-58-196-205.sslip.io/gwa/a1d8eca2-0cfc-4d84-a97e-c6b6b3bb27cc',
+]
 
 // Salva gclid/fbclid na entrada e recupera no clique — não perde se a pessoa navegar/atualizar
 function salvarAdIds() {
@@ -33,10 +39,14 @@ const WhatsAppIcon = () => (
 export default function WhatsAppPage() {
   useEffect(() => { salvarAdIds() }, [])
 
+  // sorteia o roteador uma vez por carregamento — mantém o mesmo durante
+  // a visita (href e clique sempre batem)
+  const [roteador] = useState(() => ROTEADORES[Math.floor(Math.random() * ROTEADORES.length)])
+
   // link "de verdade" pro href — assim copiar o link do botão (long-press/
   // botão direito) mostra a URL real, não um "#"
   const { gclid } = lerAdIds()
-  const linkVisivel = `${NUMERO_DINAMICO_URL}${gclid ? `?gclid=${encodeURIComponent(gclid)}` : ''}`
+  const linkVisivel = `${roteador}${gclid ? `?gclid=${encodeURIComponent(gclid)}` : ''}`
 
   const openWhatsApp = () => {
     // vai direto pro roteador, sem checagem prévia — o "ping" de teste antes
