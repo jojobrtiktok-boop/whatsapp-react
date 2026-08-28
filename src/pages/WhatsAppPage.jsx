@@ -19,6 +19,18 @@ function salvarAdIds() {
   } catch { /* localStorage indisponível */ }
 }
 
+// Confirma se o roteador tem chip disponível antes de navegar pra ele —
+// quando tem, a resposta é um redirect "opaco" (opaqueredirect); quando
+// não tem (ex: 404 "sem números disponíveis"), dá pra ler o status normal
+async function roteadorTemChip(url) {
+  try {
+    const r = await fetch(url, { redirect: 'manual' })
+    return r.type === 'opaqueredirect'
+  } catch {
+    return false
+  }
+}
+
 function lerAdIds() {
   const p = new URLSearchParams(window.location.search)
   let gclid = p.get('gclid')
@@ -48,11 +60,18 @@ export default function WhatsAppPage() {
   const { gclid } = lerAdIds()
   const linkVisivel = `${roteador}${gclid ? `?gclid=${encodeURIComponent(gclid)}` : ''}`
 
-  const openWhatsApp = () => {
-    // vai direto pro roteador, sem checagem prévia — o "ping" de teste antes
-    // dava falso negativo em rede instável e mandava lead pro número fixo
-    // antigo, que não funciona mais
-    window.location.href = linkVisivel
+  const openWhatsApp = async () => {
+    // tenta o roteador sorteado; se ele não tiver chip disponível (404),
+    // cai pro outro antes de desistir — assim nenhum clique se perde só
+    // porque um dos dois ficou sem número no momento
+    const outro = ROTEADORES.find((r) => r !== roteador)
+    const qs = gclid ? `?gclid=${encodeURIComponent(gclid)}` : ''
+
+    if (await roteadorTemChip(`${roteador}${qs}`)) {
+      window.location.href = `${roteador}${qs}`
+      return
+    }
+    window.location.href = `${outro}${qs}`
   }
 
   const stop = (e) => e.stopPropagation()
